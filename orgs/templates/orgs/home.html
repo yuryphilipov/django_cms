@@ -1,0 +1,7 @@
+﻿{% extends 'orgs/base.html' %}
+
+{% block content %}
+	{% for org in orgs %}
+		<p><a href="/orgs/{{ org.id }}">{{ org.name }} - {{ org.inn }}</a></p>
+	{% endfor %}
+{% endblock %}
