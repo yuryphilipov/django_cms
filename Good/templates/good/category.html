@@ -1,0 +1,8 @@
+﻿{% extends "good/base.html" %}
+{% block title %}{{cat.name}}{% endblock %}
+{% block content %}
+  <h2>{{cat.name}}</h2>
+{% for good in goods %}
+  <p><a href="{% url "good" good_id=good.id %}">{{good.name}}</a></p>
+{% endfor %}
+{% endblock %}

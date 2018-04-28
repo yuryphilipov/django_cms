@@ -1,0 +1,31 @@
+﻿{% extends "good/base.html" %}
+  {% block title %}Все товары{% endblock %}
+  {% block content %}
+    {% for good in goods %}
+      <p><a href="{% url "good" good_id=good.id %}">{{ good.name }}</a></p>
+    {% endfor %}
+    {% if goods.paginator.num_pages > 1 %}
+      <div id="pagination">
+        {% if goods.has_previous %}
+          <div id="previous_page"><a href="?page={{ goods.previous_page_number }}">&lt;</a></div>
+        {% endif %}
+        {% if goods.has_next %}
+          <div id="next_page"><a href="?page={{ goods.next_page_number }}">&gt;</a></div>
+        {% endif %}
+        <div id="num_pages">
+          {% for pn in goods.paginator.page_range %}
+            {% if not forloop.first %}
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+            {% endif %}
+            {% if goods.number != pn %}
+              <a href="?page={{ pn }}">
+            {% endif %}
+              {{ pn }}
+            {% if goods.number != pn %}
+              </a>
+            {% endif %}              
+          {% endfor %}
+        </div>
+      </div>  
+    {% endif %}
+  {% endblock %}
